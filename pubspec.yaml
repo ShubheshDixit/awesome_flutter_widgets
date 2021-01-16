@@ -1,0 +1,52 @@
+name: awesome_ui_widgets
+description: This is collection of some amazing UI Components designed by Shubhesh Dixit. The only UI package you need to shape your imaginations.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.1
+  theme_mode_handler: ^2.0.0
+  day_night_switcher: ^0.1.1+1
+  shared_preferences: ^0.5.12+4
+  day_night_time_picker: ^0.4.0
+  flutter_link_preview: ^1.5.6
+  flutter_svg: ^0.19.2+1
+  font_awesome_flutter: ^8.11.0
+  
+  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - images/jpeg-illustrations/
+    - images/
+    - fonts/
+
+
+  fonts:
+    - family: GothamBlack
+      fonts:
+        - asset: fonts/Gotham-Fonts/GothamBlack.otf
+          weight: 900
+    - family: GothamBold
+      fonts:
+        - asset: fonts/Gotham-Fonts/GothamBold.ttf
+          weight: 700
+    - family: GothamBook
+      fonts:
+        - asset: fonts/Gotham-Fonts/GothamBook.ttf
+          weight: 400
