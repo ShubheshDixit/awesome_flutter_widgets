@@ -1,7 +1,6 @@
 import 'package:awesome_ui_widgets/widgets/awesome_buttons.dart';
 import 'package:awesome_ui_widgets/widgets/awesome_textfield.dart';
 import 'package:awesome_ui_widgets/components/dialogs.dart';
-
 import 'package:awesome_ui_widgets/widgets/awesome_containers.dart';
 import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
@@ -272,9 +271,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                       fontSize: 22,
                                       fontWeight: FontWeight.w900),
                                 ),
-                                labelTextStyle: TextStyle(
-                                    fontSize: 22, fontWeight: FontWeight.bold),
-                                // title: Text('Add Files'),
                                 isLabelHidden: false,
                                 isTopChildCentered: false,
                                 // topChildBorderRadius: BorderRadius.circular(500),

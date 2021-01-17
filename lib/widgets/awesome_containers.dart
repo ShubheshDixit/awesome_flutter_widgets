@@ -14,7 +14,6 @@ class AwesomeContainer extends StatelessWidget {
   // A widget (or just text) to define heading of the contents
   final Widget labelWidget;
   final Text labelText;
-  final TextStyle labelTextStyle;
   final bool isLabelHidden, isPopUp;
 
   // Top Child
@@ -38,14 +37,14 @@ class AwesomeContainer extends StatelessWidget {
   // Body Widget
   final Widget bodyWidget;
   // Title
-  final Text title;
+  final Widget title;
   // Subtitle
   final Text subtitle;
 
   // Actions
   final Widget actionWidget;
   final List<Widget> actions;
-  final bool isActionsExpanded;
+  final bool isActionsExpanded, isActionHidden;
   final MainAxisAlignment actionsRowAlignment;
   final EdgeInsets actionsPadding;
   final Color actionsBgColor;
@@ -85,7 +84,6 @@ class AwesomeContainer extends StatelessWidget {
       this.overflowChildWidth = 150,
       this.labelWidget,
       this.labelText,
-      this.labelTextStyle,
       this.isLabelHidden = false,
       this.topChildWidget,
       this.topChildImage,
@@ -110,6 +108,7 @@ class AwesomeContainer extends StatelessWidget {
       this.actionWidget,
       this.actions,
       this.isActionsExpanded = true,
+      this.isActionHidden = false,
       this.actionsRowAlignment,
       this.actionsPadding,
       this.actionsBgColor,
@@ -200,7 +199,8 @@ class AwesomeContainer extends StatelessWidget {
                                   size: 30,
                                   color: Colors.grey,
                                 ),
-                                onPressed: () => Navigator.pop(context))
+                                onPressed: () => Navigator.pop(context),
+                              )
                             : SizedBox.shrink(),
                       ],
                     ),
@@ -209,14 +209,12 @@ class AwesomeContainer extends StatelessWidget {
             ? _buildTopChild(context)
             : SizedBox.shrink(),
         title != null
-            ? Column(
-                children: [
-                  Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10.0, vertical: 5.0),
-                      child: title),
-                ],
-              )
+            ? title is Text
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10.0, vertical: 5.0),
+                    child: title)
+                : title
             : SizedBox.shrink(),
         bodyWidget == null
             ? subtitle != null
@@ -227,25 +225,29 @@ class AwesomeContainer extends StatelessWidget {
                   )
                 : SizedBox.shrink()
             : bodyWidget,
-        actionWidget ??
-            Container(
-                width: MediaQuery.of(context).size.width,
-                color: actionsBgColor ?? Colors.black.withOpacity(0.2),
-                margin: EdgeInsets.only(top: 10),
-                padding: actionsPadding ?? EdgeInsets.all(10),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment:
-                      actionsRowAlignment ?? MainAxisAlignment.end,
-                  children: actions ??
-                      [
-                        isActionsExpanded
-                            ? Expanded(
-                                child: _buildActionButton(context),
-                              )
-                            : _buildActionButton(context),
-                      ],
-                )),
+        isActionHidden
+            ? SizedBox(
+                height: 10,
+              )
+            : actionWidget ??
+                Container(
+                    width: MediaQuery.of(context).size.width,
+                    color: actionsBgColor ?? Colors.black.withOpacity(0.2),
+                    margin: EdgeInsets.only(top: 10),
+                    padding: actionsPadding ?? EdgeInsets.all(10),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment:
+                          actionsRowAlignment ?? MainAxisAlignment.end,
+                      children: actions ??
+                          [
+                            isActionsExpanded
+                                ? Expanded(
+                                    child: _buildActionButton(context),
+                                  )
+                                : _buildActionButton(context),
+                          ],
+                    )),
       ],
     );
   }
