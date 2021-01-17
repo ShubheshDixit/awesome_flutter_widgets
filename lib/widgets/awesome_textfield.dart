@@ -19,7 +19,9 @@ class AwesomeTextField extends StatefulWidget {
   final BoxConstraints prefixIconConstraints;
   final TextEditingController controller;
   final List<TextInputFormatter> formatter;
-  final bool obscureText;
+  final bool obscureText, isAnimated;
+  final Axis animationAxis;
+  final Duration animationDuration;
 
   final List<BoxShadow> boxShadow;
 
@@ -53,7 +55,10 @@ class AwesomeTextField extends StatefulWidget {
       this.formatter,
       this.obscureText = false,
       this.helperText,
-      this.isReadOnly = false})
+      this.isReadOnly = false,
+      this.isAnimated = true,
+      this.animationAxis = Axis.horizontal,
+      this.animationDuration})
       : super(key: key);
 
   @override
@@ -64,13 +69,13 @@ class _AwesomeTextFieldState extends State<AwesomeTextField>
     with TickerProviderStateMixin {
   AnimationController _animationController;
   bool isHidden = false;
-  bool showOuterBorder = true;
   @override
   void initState() {
     super.initState();
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500))
-          ..forward();
+    _animationController = AnimationController(
+        vsync: this,
+        duration: widget.animationDuration ?? Duration(milliseconds: 700))
+      ..forward();
     if (widget.isPassword) isHidden = true;
   }
 
@@ -82,86 +87,93 @@ class _AwesomeTextFieldState extends State<AwesomeTextField>
 
   @override
   Widget build(BuildContext context) {
-    return SizeTransition(
-      sizeFactor: Tween(
-        begin: 0.0,
-        end: 1.0,
-      ).animate(_animationController),
-      child: Container(
-        width: widget.width ?? MediaQuery.of(context).size.width,
-        margin: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: widget.backgroundColor ?? Colors.transparent,
-          borderRadius: widget.borderRadius ?? BorderRadius.circular(8),
-          boxShadow: widget.boxShadow ?? [],
-        ),
-        child: TextField(
-          controller: widget.controller,
-          readOnly: widget.isReadOnly,
-          keyboardType: widget.keyboardType,
-          maxLines: widget.isPassword ? 1 : widget.maxLines,
-          minLines: widget.minLines,
-          onChanged: widget.onChanged,
-          inputFormatters: widget.formatter,
-          onSubmitted: widget.onSubmitted,
-          onEditingComplete: widget.onEditingComplete,
-          onTap: widget.onTap,
-          obscureText: widget.isPassword ? isHidden : widget.obscureText,
-          maxLength: widget.maxLength,
-          maxLengthEnforcement: MaxLengthEnforcement.enforced,
-          style: widget.inputStyle ??
-              TextStyle(
-                fontSize: 18,
-              ),
-          decoration: InputDecoration(
-            focusedErrorBorder: _buildBorder(Colors.red),
-            focusedBorder: _buildBorder(
-                widget.focusedBorderColor ?? Theme.of(context).primaryColor),
-            enabledBorder:
-                _buildBorder(widget.enabledBorderColor ?? Colors.grey[400]),
-            prefixIconConstraints: widget.prefixIconConstraints ??
-                BoxConstraints(
-                  minWidth: widget.prefixIcon != null ? 40 : 10,
-                  maxWidth: widget.prefixIcon != null ? 60 : 10,
-                ),
-            prefixIcon: widget.prefixIcon != null
-                ? Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                    child: widget.prefixIcon)
-                : SizedBox.shrink(),
-            hintText: widget.hintText,
-            labelText: widget.labelText,
-            helperText: widget.helperText,
-            floatingLabelBehavior: widget.hintText == null
-                ? FloatingLabelBehavior.auto
-                : FloatingLabelBehavior.always,
-            suffixIconConstraints: BoxConstraints(
-              minWidth: widget.suffix != null || widget.isPassword ? 40 : 10,
-              maxWidth: widget.suffix != null || widget.isPassword ? 60 : 10,
+    return widget.isAnimated
+        ? SizeTransition(
+            sizeFactor: Tween(
+              begin: 0.0,
+              end: 1.0,
+            ).animate(_animationController),
+            axis: widget.animationAxis,
+            child: _buidlMain(),
+          )
+        : _buidlMain();
+  }
+
+  Widget _buidlMain() {
+    return Container(
+      width: widget.width ?? MediaQuery.of(context).size.width,
+      margin: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: widget.backgroundColor ?? Colors.transparent,
+        borderRadius: widget.borderRadius ?? BorderRadius.circular(8),
+        boxShadow: widget.boxShadow ?? [],
+      ),
+      child: TextField(
+        controller: widget.controller,
+        readOnly: widget.isReadOnly,
+        keyboardType: widget.keyboardType,
+        maxLines: widget.isPassword ? 1 : widget.maxLines,
+        minLines: widget.minLines,
+        onChanged: widget.onChanged,
+        inputFormatters: widget.formatter,
+        onSubmitted: widget.onSubmitted,
+        onEditingComplete: widget.onEditingComplete,
+        onTap: widget.onTap,
+        obscureText: widget.isPassword ? isHidden : widget.obscureText,
+        maxLength: widget.maxLength,
+        maxLengthEnforcement: MaxLengthEnforcement.enforced,
+        style: widget.inputStyle ??
+            TextStyle(
+              fontSize: 18,
             ),
-            suffixIcon: widget.suffix ?? widget.isPassword
-                ? Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: IconButton(
-                          iconSize: 20,
-                          splashRadius: 25,
-                          onPressed: () {
-                            setState(() {
-                              isHidden = !isHidden;
-                            });
-                          },
-                          icon: Icon(isHidden
-                              ? FontAwesomeIcons.eye
-                              : FontAwesomeIcons.eyeSlash),
-                        ),
-                      ),
-                    ],
-                  )
-                : SizedBox.shrink(),
+        decoration: InputDecoration(
+          focusedErrorBorder: _buildBorder(Colors.red),
+          focusedBorder: _buildBorder(
+              widget.focusedBorderColor ?? Theme.of(context).primaryColor),
+          enabledBorder:
+              _buildBorder(widget.enabledBorderColor ?? Colors.grey[400]),
+          prefixIconConstraints: widget.prefixIconConstraints ??
+              BoxConstraints(
+                minWidth: widget.prefixIcon != null ? 40 : 10,
+                maxWidth: widget.prefixIcon != null ? 60 : 10,
+              ),
+          prefixIcon: widget.prefixIcon != null
+              ? Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: widget.prefixIcon)
+              : SizedBox.shrink(),
+          hintText: widget.hintText,
+          labelText: widget.labelText,
+          helperText: widget.helperText,
+          floatingLabelBehavior: widget.hintText == null
+              ? FloatingLabelBehavior.auto
+              : FloatingLabelBehavior.always,
+          suffixIconConstraints: BoxConstraints(
+            minWidth: widget.suffix != null || widget.isPassword ? 40 : 10,
+            maxWidth: widget.suffix != null || widget.isPassword ? 60 : 10,
           ),
+          suffixIcon: widget.suffix ?? widget.isPassword
+              ? Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: IconButton(
+                        iconSize: 20,
+                        splashRadius: 25,
+                        onPressed: () {
+                          setState(() {
+                            isHidden = !isHidden;
+                          });
+                        },
+                        icon: Icon(isHidden
+                            ? FontAwesomeIcons.eye
+                            : FontAwesomeIcons.eyeSlash),
+                      ),
+                    ),
+                  ],
+                )
+              : SizedBox.shrink(),
         ),
       ),
     );
