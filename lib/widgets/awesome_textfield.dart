@@ -65,7 +65,6 @@ class _AwesomeTextFieldState extends State<AwesomeTextField>
   AnimationController _animationController;
   bool isHidden = false;
   bool showOuterBorder = true;
-  double width = 60;
   @override
   void initState() {
     super.initState();
@@ -76,6 +75,12 @@ class _AwesomeTextFieldState extends State<AwesomeTextField>
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizeTransition(
       sizeFactor: Tween(
@@ -83,7 +88,7 @@ class _AwesomeTextFieldState extends State<AwesomeTextField>
         end: 1.0,
       ).animate(_animationController),
       child: Container(
-        width: widget.width ?? 300,
+        width: widget.width ?? MediaQuery.of(context).size.width,
         margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: widget.backgroundColor ?? Colors.transparent,
