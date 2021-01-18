@@ -1,4 +1,4 @@
-import 'package:awesome_ui_widgets/widgets/awesome_buttons.dart';
+import 'package:awesome_flutter_widgets/widgets/awesome_buttons.dart';
 import 'package:flutter/material.dart';
 
 /// # AwesomeContainer

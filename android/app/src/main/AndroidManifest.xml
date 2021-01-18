@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.atnosoft.awesome_ui_widgets">
+    package="com.atnosoft.awesome_flutter_widgets">
    <application
-        android:label="awesome_ui_widgets"
+        android:label="awesome_flutter_widgets"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

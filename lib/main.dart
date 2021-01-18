@@ -1,7 +1,7 @@
-import 'package:awesome_ui_widgets/widgets/awesome_buttons.dart';
-import 'package:awesome_ui_widgets/widgets/awesome_textfield.dart';
-import 'package:awesome_ui_widgets/components/dialogs.dart';
-import 'package:awesome_ui_widgets/widgets/awesome_containers.dart';
+import 'package:awesome_flutter_widgets/widgets/awesome_buttons.dart';
+import 'package:awesome_flutter_widgets/widgets/awesome_textfield.dart';
+import 'package:awesome_flutter_widgets/components/dialogs.dart';
+import 'package:awesome_flutter_widgets/widgets/awesome_containers.dart';
 import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

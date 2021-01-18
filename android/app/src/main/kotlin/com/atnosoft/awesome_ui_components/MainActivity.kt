@@ -1,4 +1,4 @@
-package com.atnosoft.awesome_ui_widgets
+package com.atnosoft.awesome_flutter_widgets
 
 import io.flutter.embedding.android.FlutterActivity
 

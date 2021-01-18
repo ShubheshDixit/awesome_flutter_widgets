@@ -7,7 +7,7 @@ class AwesomeTextField extends StatefulWidget {
   final bool isPassword, isReadOnly;
   final Widget prefixIcon;
   final TextInputType keyboardType;
-  final TextStyle labelNhintStyle, inputStyle;
+  final TextStyle labelStyle, hintStyle, inputStyle;
   final Color backgroundColor, enabledBorderColor, focusedBorderColor;
   final BorderRadius borderRadius;
   final double borderWidth, width;
@@ -35,7 +35,8 @@ class AwesomeTextField extends StatefulWidget {
       this.maxLines,
       this.minLines,
       this.width,
-      this.labelNhintStyle,
+      this.labelStyle,
+      this.hintStyle,
       this.inputStyle,
       this.enabledBorderColor,
       this.focusedBorderColor,
@@ -144,7 +145,9 @@ class _AwesomeTextFieldState extends State<AwesomeTextField>
               : SizedBox.shrink(),
           hintText: widget.hintText,
           labelText: widget.labelText,
+          labelStyle: widget.labelStyle,
           helperText: widget.helperText,
+          hintStyle: widget.hintStyle,
           floatingLabelBehavior: widget.hintText == null
               ? FloatingLabelBehavior.auto
               : FloatingLabelBehavior.always,

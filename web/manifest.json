@@ -1,6 +1,6 @@
 {
-    "name": "awesome_ui_widgets",
-    "short_name": "awesome_ui_widgets",
+    "name": "awesome_flutter_widgets",
+    "short_name": "awesome_flutter_widgets",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
