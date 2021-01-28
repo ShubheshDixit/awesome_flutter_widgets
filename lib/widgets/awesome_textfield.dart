@@ -122,7 +122,7 @@ class _AwesomeTextFieldState extends State<AwesomeTextField>
         onTap: widget.onTap,
         obscureText: widget.isPassword ? isHidden : widget.obscureText,
         maxLength: widget.maxLength,
-        maxLengthEnforcement: MaxLengthEnforcement.enforced,
+        maxLengthEnforced: true,
         style: widget.inputStyle ??
             TextStyle(
               fontSize: 18,
