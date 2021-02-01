@@ -226,9 +226,7 @@ class AwesomeContainer extends StatelessWidget {
                 : SizedBox.shrink()
             : bodyWidget,
         isActionHidden
-            ? SizedBox(
-                height: 10,
-              )
+            ? SizedBox.shrink()
             : actionWidget ??
                 Container(
                     width: MediaQuery.of(context).size.width,
