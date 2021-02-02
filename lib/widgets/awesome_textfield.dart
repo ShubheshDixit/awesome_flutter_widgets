@@ -155,28 +155,30 @@ class _AwesomeTextFieldState extends State<AwesomeTextField>
             minWidth: widget.suffix != null || widget.isPassword ? 40 : 10,
             maxWidth: widget.suffix != null || widget.isPassword ? 60 : 10,
           ),
-          suffixIcon: widget.suffix ?? widget.isPassword
-              ? Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: IconButton(
-                        iconSize: 20,
-                        splashRadius: 25,
-                        onPressed: () {
-                          setState(() {
-                            isHidden = !isHidden;
-                          });
-                        },
-                        icon: Icon(isHidden
-                            ? FontAwesomeIcons.eye
-                            : FontAwesomeIcons.eyeSlash),
-                      ),
-                    ),
-                  ],
-                )
-              : SizedBox.shrink(),
+          suffixIcon: widget.suffix == null
+              ? widget.isPassword
+                  ? Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: IconButton(
+                            iconSize: 20,
+                            splashRadius: 25,
+                            onPressed: () {
+                              setState(() {
+                                isHidden = !isHidden;
+                              });
+                            },
+                            icon: Icon(isHidden
+                                ? FontAwesomeIcons.eye
+                                : FontAwesomeIcons.eyeSlash),
+                          ),
+                        ),
+                      ],
+                    )
+                  : SizedBox.shrink()
+              : widget.suffix,
         ),
       ),
     );

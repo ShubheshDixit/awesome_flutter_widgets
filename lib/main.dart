@@ -70,7 +70,7 @@ class ThemeModeManager implements IThemeModeManager {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool isDarkModeEnabled = false;
+  bool isDarkModeEnabled = false, mode = false;
   double orgin = 0.0;
   @override
   void initState() {
@@ -304,6 +304,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     backgroundColor:
                         Theme.of(context).primaryColor.withOpacity(0.1),
                     hintText: 'Username',
+                    suffix: Switch(
+                      value: mode,
+                      onChanged: (value) {
+                        setState(() {
+                          mode = value;
+                        });
+                      },
+                    ),
                   ),
                   AwesomeTextField(
                     labelText: 'Password',
