@@ -2,7 +2,6 @@ import 'package:awesome_flutter_widgets/widgets/awesome_buttons.dart';
 import 'package:awesome_flutter_widgets/widgets/awesome_textfield.dart';
 import 'package:awesome_flutter_widgets/components/dialogs.dart';
 import 'package:awesome_flutter_widgets/widgets/awesome_containers.dart';
-import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -98,34 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        actions: [
-          // buildLongSwitch(isDarkModeEnabled, (isDarkModeEnabled) {
-          //   if (!isDarkModeEnabled) {
-          //     setState(() {
-          //       isDarkModeEnabled = true;
-          //     });
-          //     ThemeModeHandler.of(context).saveThemeMode(ThemeMode.dark);
-          //   } else {
-          //     setState(() {
-          //       isDarkModeEnabled = false;
-          //     });
-          //     ThemeModeHandler.of(context).saveThemeMode(ThemeMode.light);
-          //   }
-          // }),
-          buildLongSwitch(isDarkModeEnabled, (isDarModeEnabled) {
-            if (!isDarkModeEnabled) {
-              setState(() {
-                isDarkModeEnabled = true;
-              });
-              ThemeModeHandler.of(context).saveThemeMode(ThemeMode.dark);
-            } else {
-              setState(() {
-                isDarkModeEnabled = false;
-              });
-              ThemeModeHandler.of(context).saveThemeMode(ThemeMode.light);
-            }
-          })
-        ],
+        actions: [],
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -368,13 +340,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-}
-
-Widget buildLongSwitch(isDarkModeEnabled, onStateChanged) {
-  return DayNightSwitcher(
-    isDarkModeEnabled: isDarkModeEnabled,
-    onStateChanged: onStateChanged ?? (isDarkModeEnabled) => {},
-  );
 }
 
 class GetInfo {

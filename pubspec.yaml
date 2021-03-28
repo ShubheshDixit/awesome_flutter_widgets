@@ -1,5 +1,6 @@
 name: awesome_flutter_widgets
-description: This is collection of some amazing UI Components designed by Shubhesh Dixit. The only UI package you need to shape your imaginations.
+description: This is collection of some amazing UI Components designed by
+  Shubhesh Dixit. The only UI package you need to shape your imaginations.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
@@ -11,13 +12,10 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.1
-  theme_mode_handler: ^2.0.0
-  day_night_switcher: ^0.1.1+1
-  shared_preferences: ^0.5.12+4
   flutter_svg: ^0.19.2+1
   font_awesome_flutter: ^8.11.0
-  
-  
+  shared_preferences: ^2.0.5
+  theme_mode_handler: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -33,7 +31,6 @@ flutter:
     - images/jpeg-illustrations/
     - images/
     - fonts/
-
 
   fonts:
     - family: GothamBlack
