@@ -230,21 +230,28 @@ class _ImageDialogState extends State<ImageDialog> {
   Widget _buildCancleButton() {
     return Container(
       height: 40,
-      child: OutlineButton.icon(
+      child: OutlinedButton.icon(
         onPressed: () {
           Navigator.pop(context);
         },
-        borderSide: BorderSide(
-          color: widget.cancelColor ??
-              widget.actionColor ??
-              Theme.of(context).primaryColor,
+        style: ButtonStyle(
+          side: MaterialStateBorderSide.resolveWith(
+            (states) => BorderSide(
+              color: widget.cancelColor ??
+                  widget.actionColor ??
+                  Theme.of(context).primaryColor,
+            ),
+          ),
+          textStyle: MaterialStateProperty.resolveWith(
+            (states) => TextStyle(
+              color: widget.cancelColor ??
+                  widget.actionColor ??
+                  Theme.of(context).primaryColor,
+              fontFamily: widget.fontFamily,
+              fontSize: widget.actionFontSize ?? 18,
+            ),
+          ),
         ),
-        highlightedBorderColor: widget.cancelColor ??
-            widget.actionColor ??
-            Theme.of(context).primaryColor,
-        textColor: widget.cancelColor ??
-            widget.actionColor ??
-            Theme.of(context).primaryColor,
         icon: Icon(
           FontAwesomeIcons.timesCircle,
           size: widget.actionFontSize ?? 18,
@@ -267,8 +274,15 @@ class _ImageDialogState extends State<ImageDialog> {
   Widget _buildActionButton() {
     return Container(
       height: 40,
-      child: RaisedButton.icon(
-        color: widget.actionColor ?? Theme.of(context).primaryColor,
+      child: ElevatedButton.icon(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.resolveWith(
+            (states) =>
+                widget.actionColor ??
+                Theme.of(context).primaryColor ??
+                Colors.blue,
+          ),
+        ),
         onPressed: widget.onActionPressed ?? () => Navigator.pop(context),
         icon: Icon(FontAwesomeIcons.checkCircle,
             size: widget.actionFontSize ?? 18,
@@ -464,21 +478,27 @@ class _IconDialogState extends State<IconDialog> {
   Widget _buildCancleButton() {
     return Container(
       height: 40,
-      child: OutlineButton.icon(
+      child: OutlinedButton.icon(
         onPressed: () {
           Navigator.pop(context);
         },
-        borderSide: BorderSide(
-          color: widget.cancelColor ??
-              widget.actionColor ??
-              Theme.of(context).primaryColor,
+        style: ButtonStyle(
+          side: MaterialStateBorderSide.resolveWith(
+            (states) => BorderSide(
+              color: widget.cancelColor ??
+                  widget.actionColor ??
+                  Theme.of(context).primaryColor,
+            ),
+          ),
+          textStyle: MaterialStateProperty.resolveWith(
+            (states) => TextStyle(
+              color: widget.cancelColor ??
+                  widget.actionColor ??
+                  Theme.of(context).primaryColor,
+              fontFamily: widget.fontFamily,
+            ),
+          ),
         ),
-        highlightedBorderColor: widget.cancelColor ??
-            widget.actionColor ??
-            Theme.of(context).primaryColor,
-        textColor: widget.cancelColor ??
-            widget.actionColor ??
-            Theme.of(context).primaryColor,
         icon: Icon(
           Icons.cancel,
           color: widget.cancelColor ??
@@ -500,8 +520,15 @@ class _IconDialogState extends State<IconDialog> {
   Widget _buildActionButton() {
     return Container(
       height: 40,
-      child: RaisedButton.icon(
-        color: widget.actionColor ?? Theme.of(context).primaryColor,
+      child: ElevatedButton.icon(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.resolveWith(
+            (states) =>
+                widget.actionColor ??
+                Theme.of(context).primaryColor ??
+                Colors.blue,
+          ),
+        ),
         onPressed: widget.onActionPressed ?? () {},
         icon: Icon(Icons.check_circle,
             color: widget.actionTextColor ?? Colors.white),
@@ -741,16 +768,25 @@ class CustomChildDialog extends StatelessWidget {
   Widget _buildCancleButton(context) {
     return Container(
       height: 40,
-      child: OutlineButton.icon(
+      child: OutlinedButton.icon(
         onPressed: () {
           Navigator.pop(context);
         },
-        borderSide: BorderSide(
-          color: cancelColor ?? actionColor ?? Theme.of(context).primaryColor,
+        style: ButtonStyle(
+          side: MaterialStateBorderSide.resolveWith(
+            (states) => BorderSide(
+              color:
+                  cancelColor ?? actionColor ?? Theme.of(context).primaryColor,
+            ),
+          ),
+          textStyle: MaterialStateProperty.resolveWith(
+            (states) => TextStyle(
+              color:
+                  cancelColor ?? actionColor ?? Theme.of(context).primaryColor,
+              fontFamily: fontFamily,
+            ),
+          ),
         ),
-        highlightedBorderColor:
-            cancelColor ?? actionColor ?? Theme.of(context).primaryColor,
-        textColor: cancelColor ?? actionColor ?? Theme.of(context).primaryColor,
         icon: Icon(
           Icons.cancel,
           color: cancelColor ?? actionColor ?? Theme.of(context).primaryColor,
@@ -770,8 +806,12 @@ class CustomChildDialog extends StatelessWidget {
   Widget _buildActionButton(context) {
     return Container(
       height: 40,
-      child: RaisedButton.icon(
-        color: actionColor ?? Theme.of(context).primaryColor,
+      child: ElevatedButton.icon(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.resolveWith(
+            (states) => actionColor ?? Theme.of(context).primaryColor,
+          ),
+        ),
         onPressed: onActionPressed ?? () {},
         icon: Icon(Icons.check_circle, color: actionTextColor ?? Colors.white),
         label: Text(

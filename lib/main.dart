@@ -114,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: MediaQuery.of(context).size.width,
                     color: Theme.of(context).primaryColor,
                     margin: EdgeInsets.all(10),
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       onPressed: () {
                         showDialog(
                           context: context,
@@ -154,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: MediaQuery.of(context).size.width,
                     color: Theme.of(context).primaryColor,
                     margin: EdgeInsets.all(10),
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       onPressed: () {
                         showDialog(
                           context: context,
@@ -182,7 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: MediaQuery.of(context).size.width,
                     color: Theme.of(context).primaryColor,
                     margin: EdgeInsets.all(10),
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       onPressed: () {
                         showDialog(
                           context: context,
@@ -223,7 +223,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: MediaQuery.of(context).size.width,
                     color: Theme.of(context).primaryColor,
                     margin: EdgeInsets.all(10),
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       onPressed: () {
                         showDialog(
                           context: context,
